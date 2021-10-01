@@ -5,17 +5,17 @@ public class Board{
 
     public string BuildBoard(){
         var boardBuilder = new StringBuilder();
-        CollectRows(boardBuilder);
+        CollectData(boardBuilder);
         return boardBuilder.ToString();
     }
 
-    private void CollectRows(StringBuilder boardBuilder){
+    private void CollectData(StringBuilder boardBuilder){
         for (int i = 0; i < 10; i++){
-            CollectSingleRow(boardBuilder, i);
+            CollectRow(boardBuilder, i);
         }
     }
 
-    private void CollectSingleRow(StringBuilder boardBuilder, int row){
+    private void CollectRow(StringBuilder boardBuilder, int row){
         for (int j = 0; j < 10; j++){
             boardBuilder.Append(data[row, j]);
         }
