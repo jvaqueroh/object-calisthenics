@@ -11,14 +11,11 @@ public class GuardClause
 
     public void DoSomethingWhenPossible(bool possible)
     {
-        if (possible)
-        {
-            dependency.DoWork();
-        }
-        else
+        if (!possible)
         {
             throw new NotPossibleToDoThatNowException();
         }
+        dependency.DoWork();
     }
 }
 
