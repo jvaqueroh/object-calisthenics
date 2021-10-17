@@ -3,37 +3,38 @@ using System.Runtime.Serialization;
 
 public class Poliymorfism
 {
-    public int CalculateVolume(Model3D model)
+    public void SomeComplexMethod(Model3D model)
     {
-        if (model.Type == "sphere")
-            return CalculateSphereVolume(model);
-        else if (model.Type == "cube")
-            return CalculateCubeVolume(model);
-        else if (model.Type == "cylinder")
-            return CalculateCylinderVolume(model);
-        else
-            throw new UnknownModelException(model.Type);
+        // some code here
+        // ...
+        var volume = model.CalculateVolume();
+        // more code here
+        // ...
     }
+}
 
-    private int CalculateCylinderVolume(Model3D model)
-    {
-        throw new NotImplementedException();
-    }
+public abstract class Model3D
+{
+    public abstract int CalculateVolume();
+}
 
-    private int CalculateCubeVolume(Model3D model)
-    {
-        throw new NotImplementedException();
-    }
-
-    private int CalculateSphereVolume(Model3D model)
+public class Sphere:Model3D{
+    public override int CalculateVolume()
     {
         throw new NotImplementedException();
     }
 }
-
-public class Model3D
-{
-    public string Type { get; internal set; }
+public class Cylinder:Model3D{
+    public override int CalculateVolume()
+    {
+        throw new NotImplementedException();
+    }
+}
+public class Cube:Model3D{
+    public override int CalculateVolume()
+    {
+        throw new NotImplementedException();
+    }
 }
 
 [Serializable]
