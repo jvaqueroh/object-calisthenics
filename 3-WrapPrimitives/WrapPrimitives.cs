@@ -20,10 +20,13 @@ public class Vehicle{
 }
 
 public class SerialNumber{
+    private readonly string value;
+    
     public SerialNumber(string value)
     {
         if (Validate(value))
             throw new ArgumentException("value");
+        this.value = value;
     }
 
     private bool Validate(string value)
@@ -31,14 +34,38 @@ public class SerialNumber{
         return string.IsNullOrWhiteSpace(value) || !value.StartsWith("W") || value.Length != 15;
     }
 
-    public string Value { get; }
+    public override bool Equals(object obj)
+    {
+        return obj is SerialNumber number &&
+               value == number.value;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(value);
+    }
+
 }
 
 public class ProductionYear{
+    private readonly int value;
+
     public ProductionYear(int value)
     {
         if (Validate(value))
             throw new ArgumentException("value");
+        this.value = value;
+    }
+
+    public override bool Equals(object obj)
+    {
+        return obj is ProductionYear year &&
+               value == year.value;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(value);
     }
 
     private bool Validate(int value)
