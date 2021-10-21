@@ -29,22 +29,14 @@ public class SerialNumber{
         this.value = value;
     }
 
-    private bool Validate(string value)
-    {
-        return string.IsNullOrWhiteSpace(value) || !value.StartsWith("W") || value.Length != 15;
-    }
+    private bool Validate(string value) => string.IsNullOrWhiteSpace(value)
+                                           || !value.StartsWith("W")
+                                           || value.Length != 15;
 
-    public override bool Equals(object obj)
-    {
-        return obj is SerialNumber number &&
-               value == number.value;
-    }
+    public override bool Equals(object obj) => obj is SerialNumber number
+                                               && value == number.value;
 
-    public override int GetHashCode()
-    {
-        return HashCode.Combine(value);
-    }
-
+    public override int GetHashCode() => HashCode.Combine(value);
 }
 
 public class ProductionYear{
@@ -57,19 +49,11 @@ public class ProductionYear{
         this.value = value;
     }
 
-    public override bool Equals(object obj)
-    {
-        return obj is ProductionYear year &&
-               value == year.value;
-    }
+    private bool Validate(int value) => value > DateTime.Now.Year
+                                        || value < 1900;
 
-    public override int GetHashCode()
-    {
-        return HashCode.Combine(value);
-    }
+    public override bool Equals(object obj) => obj is ProductionYear year
+                                               && value == year.value;
 
-    private bool Validate(int value)
-    {
-        return value > DateTime.Now.Year || value < 1900;
-    }
+    public override int GetHashCode() => HashCode.Combine(value);
 }
