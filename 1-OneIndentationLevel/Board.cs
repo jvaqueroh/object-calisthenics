@@ -1,7 +1,7 @@
 using System.Text;
 
 public class Board{
-    private string [,] data;
+    private string [,] data = new string [5,5];
 
     public string BuildBoard(){
         var boardBuilder = new StringBuilder();
