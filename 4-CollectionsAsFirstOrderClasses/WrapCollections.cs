@@ -4,20 +4,36 @@ using System.Linq;
 
 public class Order
 {
-    public List<Product> Products { get; private set; }
+    public ProductsList Products { get; private set; }
     public Address ShipmentAddress { get; private set; }
     public Customer Customer { get; private set; }
 
     public void AddProduct(Product newProduct)
     {
-        Product product = Products
+        Products.Add(newProduct);
+        UpdateInvoice();
+    }
+
+    private void UpdateInvoice()
+    {
+        throw new NotImplementedException();
+    }
+}
+
+public class ProductsList
+{
+    private List<Product> products = new List<Product>();
+
+    public void Add(Product newProduct)
+    {
+        Product product = products
             .Where(product => product.SerialNumber.Equals(newProduct.SerialNumber))
             .SingleOrDefault();
 
         if (product == null)
-            product.AddUnits(1);
+            product.AddUnits(newProduct.Quantity);
         else
-            Products.Add(newProduct);
+            products.Add(newProduct);
     }
 }
 
