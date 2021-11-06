@@ -15,7 +15,7 @@ public class Order
             .SingleOrDefault();
 
         if (product == null)
-            product.Add(1);
+            product.AddUnits(1);
         else
             Products.Add(newProduct);
     }
@@ -34,8 +34,8 @@ public class Product
     public string SerialNumber { get; private set; }
     public int Quantity { get; private set; }
 
-    internal void Add(int v)
+    public void AddUnits(int units)
     {
-        throw new NotImplementedException();
+        Quantity += units;
     }
 }
