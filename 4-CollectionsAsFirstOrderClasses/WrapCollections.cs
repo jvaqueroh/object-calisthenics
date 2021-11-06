@@ -27,10 +27,11 @@ public class ProductsList
     public void Add(Product newProduct)
     {
         Product product = products
-            .Where(product => product.SerialNumber.Equals(newProduct.SerialNumber))
+            .Where(product => 
+                product.SerialNumber.Equals(newProduct.SerialNumber))
             .SingleOrDefault();
 
-        if (product == null)
+        if (product != null)
             product.AddUnits(newProduct.Quantity);
         else
             products.Add(newProduct);
