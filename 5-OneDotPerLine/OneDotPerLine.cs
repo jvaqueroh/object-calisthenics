@@ -9,16 +9,27 @@ namespace ObjectCalisthenics.Rule5.OneDotPerLine{
         String BoardRepresentation(){
             StringBuilder buf = new StringBuilder();
             foreach (Location l in squares)
-                buf.Append(l.current.representation.Substring(0, 1));
+                l.AddTo(buf);
             return buf.ToString();
-        }
-
-        class Piece{
-            internal String representation;
         }
 
         class Location{
             internal Piece current;
+            internal void AddTo(StringBuilder buf){
+                current.AddTo(buf);
+            }
+        }
+
+        class Piece{
+            internal String representation;
+            
+            internal void AddTo(StringBuilder buf){
+                buf.Append(RepresentationForBoard());
+            }
+
+            private string RepresentationForBoard(){
+                return representation.Substring(0, 1);
+            }
         }
     }
 }
