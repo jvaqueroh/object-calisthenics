@@ -2,37 +2,37 @@ using System;
 
 public class DoNotAbbreviate
 {
-    public Person CreatePersonWithNameAndSurname(string personName, string personSurname)
+    public Person CreatePWithNameSurname(string pName, string pSurname)
     {
-        if (personName != null && personSurname != null)
-            return new Person(personName, personSurname, null);
+        if (pName != null && pSurname != null)
+            return new Person(pName, pSurname, null);
         else
             return null;
     }
 
-    public Person CreatePersonWithNameSurnameAndAge(string personName, string personSurname, Age personAge)
+    public Person CreatePWithNameSurnameAge(string pName, string pSurname, Age pAge)
     {
-        if (personName != null && personSurname != null && personAge != null)
-            return new Person(personName, personSurname, personAge);
+        if (pName != null && pSurname != null && pAge != null)
+            return new Person(pName, pSurname, pAge);
         else
             return null;
     }
 
-    public int CheckWhoIsOlderAndPrintOrdered(Person person1, Person person2)
+    public int CheckOlderAndPrint(Person p1, Person p2)
     {
-        var result = person1.Age.Years - person2.Age.Years;
-        if (result > 0)
+        var r = p1.Age.Years - p2.Age.Years;
+        if (r > 0)
         {
-            Console.WriteLine(person1);
-            Console.WriteLine(person2);
+            Console.WriteLine(p1);
+            Console.WriteLine(p2);
         }
         else
         {
-            Console.WriteLine(person2);
-            Console.WriteLine(person1);
+            Console.WriteLine(p2);
+            Console.WriteLine(p1);
         }
 
-        return result;
+        return r;
     }
 }
 
@@ -47,10 +47,10 @@ public class Person
     public string Surname { get; private set; }
     public Age Age { get; private set; }
 
-    public Person(string personName, string personSurname, Age personAge)
+    public Person(string pName, string pSurname, Age pAge)
     {
-        this.Name = personName;
-        this.Surname = personSurname;
-        this.Age = personAge;
+        this.Name = pName;
+        this.Surname = pSurname;
+        this.Age = pAge;
     }
 }
