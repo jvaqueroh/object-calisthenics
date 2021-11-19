@@ -30,6 +30,10 @@ public class DoNotAbbreviate
 public class Age
 {
     public int Years { get; private set; }
+
+    public int Compare(Age other){
+        return this.Years - other.Years;
+    }
 }
 
 public class Person
@@ -68,6 +72,6 @@ public class Person
 
     public int Compare(Person otherPerson)
     {
-        return this.Age.Years - otherPerson.Age.Years;
+        return Age.Compare(otherPerson.Age);
     }
 }
