@@ -2,37 +2,28 @@ using System;
 
 public class DoNotAbbreviate
 {
-    public Person CreatePWithNameSurname(string pName, string pSurname)
+    public void SomeUseCase(Person firstPerson, Person secondPerson)
     {
-        if (pName != null && pSurname != null)
-            return new Person(pName, pSurname, null);
-        else
-            return null;
+        int ageComparisonResult = firstPerson.Compare(secondPerson);
+        PrintOrdered(firstPerson, secondPerson, ageComparisonResult);
     }
 
-    public Person CreatePWithNameSurnameAge(string pName, string pSurname, Age pAge)
+    private static void PrintOrdered(Person person1, Person person2, int ageComparisonResult)
     {
-        if (pName != null && pSurname != null && pAge != null)
-            return new Person(pName, pSurname, pAge);
-        else
-            return null;
-    }
-
-    public int CheckOlderAndPrint(Person p1, Person p2)
-    {
-        var r = p1.Age.Years - p2.Age.Years;
-        if (r > 0)
+        if (ageComparisonResult > 0)
         {
-            Console.WriteLine(p1);
-            Console.WriteLine(p2);
+            Print(person1, person2);
         }
         else
         {
-            Console.WriteLine(p2);
-            Console.WriteLine(p1);
+            Print(person2, person1);
         }
+    }
 
-        return r;
+    private static void Print(Person person1, Person person2)
+    {
+        Console.WriteLine(person1);
+        Console.WriteLine(person2);
     }
 }
 
@@ -46,11 +37,37 @@ public class Person
     public string Name { get; private set; }
     public string Surname { get; private set; }
     public Age Age { get; private set; }
+    //properties omited
 
-    public Person(string pName, string pSurname, Age pAge)
+    private Person(string pName, string pSurname, Age pAge)
     {
         this.Name = pName;
         this.Surname = pSurname;
         this.Age = pAge;
+    }
+
+    public static Person Create(string name, string surname)
+    {
+        if (name == null || surname == null)
+            return null;
+
+        return new Person(name, surname, null);
+    }
+
+    public static Person Create(string name, string surname, Age age)
+    {
+        if (age == null)
+            return null;
+
+        var person = Person.Create(name, surname);
+        if (person != null)
+            person.Age = age;
+
+        return person;
+    }
+
+    public int Compare(Person otherPerson)
+    {
+        return this.Age.Years - otherPerson.Age.Years;
     }
 }
