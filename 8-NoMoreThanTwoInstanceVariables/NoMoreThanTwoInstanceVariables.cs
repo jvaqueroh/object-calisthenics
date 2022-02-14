@@ -15,5 +15,5 @@ public class Name
 
 public class GivenNames
 {
-    public List<string> names { get; private set; }
+    public List<string> Names { get; private set; }
 }
