@@ -7,7 +7,7 @@ public class OldName
     public string Last { get; private set; }
 }
 
-class Name
+public class Name
 {
     public string Surname { get; private set; }
     public GivenNames Given { get; private set; }
